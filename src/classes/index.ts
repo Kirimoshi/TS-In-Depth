@@ -5,4 +5,6 @@ export * as UL from './university-librarian';
 
 export type { Library } from './library';
 
+export { default as Shelf } from './shelf';
+
 

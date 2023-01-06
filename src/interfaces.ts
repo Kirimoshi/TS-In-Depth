@@ -33,4 +33,13 @@ interface TOptions {
     speed?: number;
 }
 
+export interface IMagazine {
+    title: string;
+    publisher: string;
+}
+
+export interface IShelfItem {
+    title: string;
+}
+
 export { IBook, IDamageLogger as ILogger, IPerson, IAuthor, ILibrarian, TOptions };

@@ -68,7 +68,9 @@ function checkoutBooks(customer: string, bookIDs: number[]): string[] {
 function getTitles(...rest: any[]): IBook[] {
     let resultArray: IBook[] = [];
     if (arguments.length === 1 && typeof arguments[0] === 'string') {
-        resultArray = getAllBooks().filter((book: IBook) => book.author === arguments[0]);
+        resultArray = getAllBooks().filter(function callback(book: IBook) {
+            return book.author === arguments[0];
+        });
     }
     if (arguments.length === 1 && typeof arguments[0] === 'boolean') {
         resultArray = getAllBooks().filter((book: IBook) => book.available === arguments[0]);
@@ -164,6 +166,15 @@ function setDefaultConfig(options: TOptions): object {
     options.duration = 5;
     options.speed = 20;
     return options;
+}
+
+export function purge<T>(inventory: T[]): T[] {
+    return inventory.slice(2);
+}
+
+export function getObjectProperty<TObject, TKey extends keyof TObject>(obj: TObject, prop: TKey): TObject[TKey] | string {
+    const value = obj[prop];
+    return typeof value === 'function' ? value.name : value;
 }
 
 // TODO export all functions

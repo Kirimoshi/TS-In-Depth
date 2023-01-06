@@ -1,11 +1,11 @@
 /* eslint-disable no-redeclare */
 import {Category} from './enums';
-import { IBook, ILogger, IAuthor, ILibrarian } from './interfaces';
-import { UL, ReferenceItem, RefBook } from './classes';
+import { IBook, ILogger, IAuthor, ILibrarian, IMagazine } from './interfaces';
+import { UL, ReferenceItem, RefBook, Shelf } from './classes';
 import { PersonBook } from './types';
 import { Library } from './classes/library';
 // TODO Import all functions
-import {printRefBook} from './functions';
+import {getObjectProperty, printRefBook, purge} from './functions';
 
 showHello('greeting', 'TypeScript');
 
@@ -265,4 +265,42 @@ let library: Library = {
 };
 
 console.log(library);
+
+// Task 07.01
+// Generic Functions
+
+const inventory: Book[] = [
+    { id: 10, title: 'The C Programming Language', author: '???', available: true, category: Category.Software },
+    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software },
+];
+
+/* console.log(purge(inventory));
+console.log(purge([1,2,3])); */
+
+// Task 07.02
+// Generic classes and interfaces
+/* const bookShelf = new Shelf<Book>();
+inventory.forEach(book => bookShelf.add(book));
+console.log(bookShelf.getFirst().title); */
+
+const magazines: IMagazine[] = [
+    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+    { title: 'Five Points', publisher: 'GSU' },
+];
+/* const magazineShelf = new Shelf<IMagazine>();
+magazines.forEach(mag => magazineShelf.add(mag));
+/!* console.log(magazineShelf.getFirst()); *!/
+
+magazineShelf.printTitles();
+console.log(magazineShelf.find('Five Points')); */
+
+/* console.log(getObjectProperty(magazines[1], 'title')); */
+
+
+
+
+
 
