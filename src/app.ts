@@ -6,6 +6,7 @@ import {PersonBook, BookRequiredFields, UpdatedBook, CreateCustomerFunctionType}
 import { Library } from './classes/library';
 // TODO Import all functions
 import {createCustomer, getObjectProperty, printRefBook, purge} from './functions';
+import {UniversityLibrarian} from './classes/university-librarian';
 
 showHello('greeting', 'TypeScript');
 
@@ -317,11 +318,20 @@ const updatedBook: UpdatedBook = {
     title: 'Learn React',
 }; */
 
-let params: Parameters<CreateCustomerFunctionType>;
+/* let params: Parameters<CreateCustomerFunctionType>;
 params = ['Anna', 30, 'Kyiv'];
-createCustomer(...params);
+createCustomer(...params); */
 
+// Task 08.01
+// Class decorators (sealed)
 
+const universityLibrarian = new UL.UniversityLibrarian();
+const universityLibrarian2 = new UL.UniversityLibrarian();
 
+universityLibrarian['a'] = 1;
+// UL.UniversityLibrarian['a'] = 2;
+UL.UniversityLibrarian.prototype['a'] = 2;
 
-
+const fLibrarian = new UL.UniversityLibrarian();
+fLibrarian.name = 'Anna';
+fLibrarian['printLibrarian']();
