@@ -2,10 +2,10 @@
 import {Category} from './enums';
 import { IBook, ILogger, IAuthor, ILibrarian, IMagazine } from './interfaces';
 import { UL, ReferenceItem, RefBook, Shelf } from './classes';
-import { PersonBook } from './types';
+import {PersonBook, BookRequiredFields, UpdatedBook, CreateCustomerFunctionType} from './types';
 import { Library } from './classes/library';
 // TODO Import all functions
-import {getObjectProperty, printRefBook, purge} from './functions';
+import {createCustomer, getObjectProperty, printRefBook, purge} from './functions';
 
 showHello('greeting', 'TypeScript');
 
@@ -299,6 +299,27 @@ console.log(magazineShelf.find('Five Points')); */
 
 /* console.log(getObjectProperty(magazines[1], 'title')); */
 
+// Task 07.04
+// Utility Types
+
+/* const bookRequiredFields: BookRequiredFields = {
+    id: 1,
+    title: 'Learn Angular',
+    author: 'Anna',
+    available: false,
+    category: Category.Angular,
+    pages: 200,
+    markDamaged: null,
+};
+
+const updatedBook: UpdatedBook = {
+    id: 2,
+    title: 'Learn React',
+}; */
+
+let params: Parameters<CreateCustomerFunctionType>;
+params = ['Anna', 30, 'Kyiv'];
+createCustomer(...params);
 
 
 

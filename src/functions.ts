@@ -46,7 +46,7 @@ function createCustomerID(name: string, id: number): string {
     return `${name}${id}`;
 }
 
-function createCustomer(name: string, age?: number, city?: string): void {
+export function createCustomer(name: string, age?: number, city?: string): void {
     console.log(`Customer name: ${name}`);
     console.log(`Customer age: ${age} year(s)`);
     console.log(`Customer city: ${city}`);
