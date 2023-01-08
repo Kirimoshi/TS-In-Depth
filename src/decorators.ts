@@ -23,3 +23,53 @@ export function logger<TFunction extends Function>(constructor: TFunction): TFun
 
     return newConstructor as TFunction;
 }
+
+export function writable(isWritable: boolean) {
+    return function (constructorOrPrototype: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+        console.log(constructorOrPrototype);
+        console.log(methodName);
+        console.log(descriptor);
+        descriptor.writable = isWritable;
+        return descriptor;
+    };
+}
+export function timeout(ms: number) {
+    return function (constructorOrPrototype: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+        const originalMethod = descriptor.value;
+
+        descriptor.value = function (...args: any[]) {
+            if (window.confirm('Are you sure?')) {
+                setTimeout(() => {
+                    originalMethod.apply(this, args);
+                }, ms);
+            }
+        };
+
+        return descriptor;
+    };
+}
+
+export function logParameter(target: any, methodName: string, index: number) {
+    const key = `${methodName}_decor_params_indexes`;
+    const proto = typeof target === 'function' ? target.prototype : target;
+    (proto[key] ??= []).push(index);
+}
+
+export function logMethod(target: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+    const originalMethod = descriptor.value;
+
+    descriptor.value = function (...args: any[]) {
+        const key = `${methodName}_decor_params_indexes`;
+        const proto = typeof target === 'function' ? target.prototype : target;
+        const indices = proto[key];
+        if (Array.isArray(indices)) {
+            indices.forEach((itemIndex) => {
+                console.log(`Method: ${methodName}, ParamIndex: ${itemIndex}, ParamValue: ${args[itemIndex]}`);
+            });
+        }
+
+        return originalMethod.apply(this, args);
+    };
+
+    return descriptor;
+}

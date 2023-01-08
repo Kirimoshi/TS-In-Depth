@@ -7,7 +7,7 @@ export default class Encyclopedia extends ReferenceItem {
 
     override printItem() {
         super.printItem();
-        console.log(`Edition: ${this.edition} (${this.year})`);
+        console.log('Printing item...');
     }
 
     printCitation() {

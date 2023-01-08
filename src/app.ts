@@ -207,10 +207,10 @@ console.log(ref.getId()); */
 // Task 05.03
 // Creating Abstract Classes
 
-let refBook = new RefBook(1);
+// let refBook = new RefBook(1);
 /* console.log(refBook.printItem()); */
-refBook.printCitation();
-printRefBook(refBook);
+// refBook.printCitation();
+// printRefBook(refBook);
 
 // Task 05.04
 // Interfaces for Class Types
@@ -228,7 +228,7 @@ let refPersonBook: PersonBook = {
     title: 'Me Again'
 };
 
-console.log(refPersonBook);
+// console.log(refPersonBook);
 
 // Task 06.05
 /* const flag = true; */
@@ -265,7 +265,7 @@ let library: Library = {
     address: 'Here'
 };
 
-console.log(library);
+// console.log(library);
 
 // Task 07.01
 // Generic Functions
@@ -325,6 +325,7 @@ createCustomer(...params); */
 // Task 08.01
 // Class decorators (sealed)
 
+/*
 const universityLibrarian = new UL.UniversityLibrarian();
 const universityLibrarian2 = new UL.UniversityLibrarian();
 
@@ -334,4 +335,27 @@ UL.UniversityLibrarian.prototype['a'] = 2;
 
 const fLibrarian = new UL.UniversityLibrarian();
 fLibrarian.name = 'Anna';
-fLibrarian['printLibrarian']();
+fLibrarian['printLibrarian']();*/
+
+// Task 08.03
+// Method decorators
+
+/* const favLibrarian = new UL.UniversityLibrarian();
+console.log(favLibrarian);
+
+favLibrarian.assistFaculty = null; */
+// favLibrarian.teachCommunity = null;
+
+// Task 08.04
+// Method decorator (timeout)
+
+/* const newEncyclopedia: Encyclopedia = new Encyclopedia(1);
+newEncyclopedia.printItem(); */
+
+// Task 08.05
+// Parameter Decorators
+
+const favLibrarian = new UL.UniversityLibrarian();
+console.log(favLibrarian);
+favLibrarian.name = 'Anna';
+favLibrarian.assistCustomer('Ihor', 'Learn TypeScript');
