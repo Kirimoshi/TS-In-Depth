@@ -1,4 +1,4 @@
-import {IBook, ILogger, TOptions} from './interfaces';
+import {Callback, IBook, ILogger, LibMgrCallback, TOptions} from './interfaces';
 import {Category} from './enums';
 import {BookProperties} from './types';
 import {BookOrUndefined} from './types';
@@ -177,4 +177,40 @@ export function getObjectProperty<TObject, TKey extends keyof TObject>(obj: TObj
     return typeof value === 'function' ? value.name : value;
 }
 
-// TODO export all functions
+export function getBooksByCategory(category: Category, callback: Callback<string[]>): void {
+    setTimeout(() => {
+        try {
+            const titles = getBookTitlesByCategory(category);
+            if (titles.length > 0) {
+                callback(null, titles);
+            } else {
+                throw new Error('No books found.');
+            }
+        } catch (e) {
+            callback(e, null);
+        }
+    }, 2000);
+}
+
+export function logCategorySearch(err: Error | null, titles: string[] | null): void {
+    err ? console.log(err.message) : console.log(titles);
+}
+
+export function getBooksByCategoryPromise(category: Category): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+        setTimeout(() => {
+            const titles = getBookTitlesByCategory(category);
+            if (titles.length > 0) {
+                resolve(titles);
+            } else {
+                reject('No books found.');
+            }
+        }, 2000);
+    });
+}
+
+export async function logSearchResults(category: Category) {
+    const titles = await getBooksByCategoryPromise(category);
+    console.log(titles.length);
+    return titles;
+}

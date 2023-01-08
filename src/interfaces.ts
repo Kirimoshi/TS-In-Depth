@@ -42,4 +42,12 @@ export interface IShelfItem {
     title: string;
 }
 
+export interface LibMgrCallback {
+    (err: Error | null, titles: string[] | null): void;
+}
+
+export interface Callback<T> {
+    (err: Error | null, data: T | null): void;
+}
+
 export { IBook, IDamageLogger as ILogger, IPerson, IAuthor, ILibrarian, TOptions };

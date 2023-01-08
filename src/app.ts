@@ -1,12 +1,9 @@
 /* eslint-disable no-redeclare */
 import {Category} from './enums';
-import { IBook, ILogger, IAuthor, ILibrarian, IMagazine } from './interfaces';
-import { UL, ReferenceItem, RefBook, Shelf } from './classes';
-import {PersonBook, BookRequiredFields, UpdatedBook, CreateCustomerFunctionType} from './types';
-import { Library } from './classes/library';
-import {createCustomer, getObjectProperty, printRefBook, purge} from './functions';
-import {UniversityLibrarian} from './classes/university-librarian';
-import Encyclopedia from './classes/encyclopedia';
+import {IAuthor, IBook, ILibrarian, IMagazine} from './interfaces';
+import {PersonBook} from './types';
+import {Library} from './classes/library';
+import {getBooksByCategoryPromise, logSearchResults} from './functions';
 
 showHello('greeting', 'TypeScript');
 
@@ -376,3 +373,37 @@ console.log(favLibrarian); */
 /* const newEncyclopedia: Encyclopedia = new Encyclopedia(1);
 newEncyclopedia.copies = 5;
 console.log(newEncyclopedia.copies); */
+
+// Task 09.01
+// Callback Functions
+
+/* console.log('Start');
+getBooksByCategory(Category.Software, logCategorySearch);
+console.log('End'); */
+
+// Task 09.02
+// Promises
+/* console.log('Start');
+getBooksByCategoryPromise(Category.JavaScript)
+    .then(titles => {
+        console.log(titles);
+        return titles.length;
+    })
+    .then(n => console.log(n))
+    .catch(reason => console.log(reason));
+getBooksByCategoryPromise(Category.Software)
+    .then(titles => {
+        console.log(titles);
+        return titles.length;
+    })
+    .then(n => console.log(n))
+    .catch(reason => console.log(reason));
+console.log('End'); */
+
+// Task 09.03
+// Async Functions
+
+console.log('Start');
+logSearchResults(Category.JavaScript).then();
+logSearchResults(Category.Software).catch(err => console.log(err));
+console.log('End');
