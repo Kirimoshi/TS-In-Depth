@@ -4,9 +4,9 @@ import { IBook, ILogger, IAuthor, ILibrarian, IMagazine } from './interfaces';
 import { UL, ReferenceItem, RefBook, Shelf } from './classes';
 import {PersonBook, BookRequiredFields, UpdatedBook, CreateCustomerFunctionType} from './types';
 import { Library } from './classes/library';
-// TODO Import all functions
 import {createCustomer, getObjectProperty, printRefBook, purge} from './functions';
 import {UniversityLibrarian} from './classes/university-librarian';
+import Encyclopedia from './classes/encyclopedia';
 
 showHello('greeting', 'TypeScript');
 
@@ -355,7 +355,24 @@ newEncyclopedia.printItem(); */
 // Task 08.05
 // Parameter Decorators
 
+/*
 const favLibrarian = new UL.UniversityLibrarian();
 console.log(favLibrarian);
 favLibrarian.name = 'Anna';
+favLibrarian.assistCustomer('Ihor', 'Learn TypeScript');*/
+
+// Task 08.06
+// Property Decorator
+
+/* const favLibrarian = new UL.UniversityLibrarian();
+favLibrarian.name = 'Anna';
+console.log(favLibrarian.name);
 favLibrarian.assistCustomer('Ihor', 'Learn TypeScript');
+console.log(favLibrarian); */
+
+// Task 08.07
+// Accessor Decorator
+
+/* const newEncyclopedia: Encyclopedia = new Encyclopedia(1);
+newEncyclopedia.copies = 5;
+console.log(newEncyclopedia.copies); */
